@@ -10,9 +10,13 @@ function App() {
   })
   const add = (event) => {
     event.preventDefault()
-    const id = info.length + 20
+    const id = info.map(item => item.id)
+    let nextId = Math.max(...id) + 1
+    while (id.includes(nextId)) {
+      nextId++
+    }
     const newInfo = {
-      id,
+      id: nextId,
       first_name: event.target.first.value,
       last_name: event.target.last_name.value,
       username: event.target.username.value,
